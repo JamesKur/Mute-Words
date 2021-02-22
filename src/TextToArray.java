@@ -7,7 +7,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.nio.charset.StandardCharsets;
 
-public class TextToArray {
+//Adds each line of text into an ArrayList
+public final class TextToArray{
+
+    private TextToArray(){
+        //not called
+    }
 
 	public static ArrayList<String> indexArray(Path path) throws IOException{
         ArrayList<String> list = new ArrayList<String>();

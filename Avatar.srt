@@ -1,8 +1,4 @@
-﻿0
-00:00:05,748 --> 00:00:25,042
-s jesus jesus jesus jesus jesus
-
-1
+﻿1
 00:00:39,748 --> 00:00:42,042
 <i>JAKE: When I was lying there
 in the VA hospital,</i>

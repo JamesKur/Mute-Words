@@ -1,7 +1,11 @@
 import java.util.ArrayList;
 
 //Performs timecalculations using word and sutitle unit location and size.
-public class TimeCalculations {
+public final class TimeCalculations {
+
+    private TimeCalculations(){
+        //not called
+    }
 
     public static ArrayList<Double> subtitleToIntervel(String times, String speech, String word){
         
@@ -23,8 +27,8 @@ public class TimeCalculations {
             timestamps.add(start-.1);
             timestamps.add(start+wordTime+.1);
         }
-        System.out.println(indeces);
-        System.out.println(timestamps);
+        //System.out.println(indeces);
+        //System.out.println(timestamps);
 
         //Removes overlap if there are multiple instances of the same word in a subtitle unit
         timestamps = removeOverlap(timestamps);
@@ -34,7 +38,7 @@ public class TimeCalculations {
         bounds as necessary.*/
         timestamps = removeOutOfBounds(timestamps, beginning, end);
         //double[] timeValues = new double[]{beginning,end};
-        System.out.println(timestamps);
+        //System.out.println(timestamps);
         return timestamps;
     }
 

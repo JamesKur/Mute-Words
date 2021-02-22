@@ -8,6 +8,8 @@ import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.IOException;
 
+//Subititle subunite: a single block of text that appears on screen during a movie.
+//This code is still in the works, hence the numerous commented-out code that is used for testing.
 public class MuteWords {
     public static void main(String[] args) throws IOException {
         Path wordList = Paths.get("Bad_Words.txt");
@@ -27,7 +29,6 @@ public class MuteWords {
         BufferedReader subtitleReader = Files.newBufferedReader(subtitle, StandardCharsets.ISO_8859_1);
         //System.out.println(subtitleReader.readLine());
         ArrayList<String> subUnit = new ArrayList<String>();
-        //String subUnitText;
         String subUnitSpeech = "";
         String subtitleLine;
         ArrayList<Double> timestamps;
@@ -54,9 +55,9 @@ public class MuteWords {
                                 timestamps = TimeCalculations.subtitleToIntervel(subUnit.get(1), subUnitSpeech, word);
                                 EDLManager.command(edl, timestamps,1,subUnitSpeech,word);
                                 for(int i=0;i<timestamps.size();i+=2){
-                                    edls.add(new EDLCommand(timestamps.get(i), timestamps.get(i+1), EDLCommand.MUTE));
+                                    edls.add(new EDLCommand(timestamps.get(i), timestamps.get(i+1), EDLCommand.MUTE, subUnitSpeech, word));
                                 }
-                                tester.nextLine();
+                                //tester.nextLine();
                         }
                         break;
                     }
@@ -65,8 +66,13 @@ public class MuteWords {
                 subUnit.clear();
             }   
         }
-    }
 
+        Collections.sort(edls);
+
+    }
+    //Attemps to find all practical uses of word in a string. 
+    /*For example, if you are looking for the word "is", this method will ignore that char
+    sequence in the in the word "fist"*/
     public static int contains( String subUnitSpeech, String word){
         if(subUnitSpeech.indexOf(word)==0){
             if(subUnitSpeech.contains(word+" ")){
