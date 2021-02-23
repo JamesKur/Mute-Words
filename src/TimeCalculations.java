@@ -27,7 +27,6 @@ public final class TimeCalculations {
             timestamps.add(start-.1);
             timestamps.add(start+wordTime+.1);
         }
-        //System.out.println(indeces);
         //System.out.println(timestamps);
 
         //Removes overlap if there are multiple instances of the same word in a subtitle unit
