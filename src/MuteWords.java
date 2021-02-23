@@ -26,7 +26,7 @@ public class MuteWords {
             Files.delete(edl);
             Files.createFile(edl);
         }
-        BufferedReader subtitleReader = Files.newBufferedReader(subtitle, StandardCharsets.ISO_8859_1);
+        BufferedReader subtitleReader = Files.newBufferedReader(subtitle);
         //System.out.println(subtitleReader.readLine());
         ArrayList<String> subUnit = new ArrayList<String>();
         String subUnitSpeech = "";
