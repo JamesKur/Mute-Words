@@ -1,11 +1,8 @@
 
-//import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.nio.charset.StandardCharsets;
 
 //Adds each line of text into an ArrayList
 public final class TextToArray{
@@ -16,7 +13,7 @@ public final class TextToArray{
 
 	public static ArrayList<String> indexArray(Path path) throws IOException{
         ArrayList<String> list = new ArrayList<String>();
-        BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
+        BufferedReader reader = Files.newBufferedReader(path);
         String line;
         while((line=reader.readLine()) != null){
             list.add(line.toLowerCase());
