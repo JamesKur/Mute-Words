@@ -15,8 +15,8 @@ public class MuteWords {
         Collections.sort(words, Comparator.comparing(String::length));
         Collections.reverse(words);
         //System.out.println(words);
+        //Path subtitle = Paths.get("Avatar.srt");
         Path subtitle = Paths.get(args[0]);
-        //Path subtitle = Paths.get(args[0]);
         Path edl = Paths.get(subtitle.toString().substring(0,subtitle.toString().lastIndexOf(".")) + ".edl");
         try{
             Files.createFile(edl);
