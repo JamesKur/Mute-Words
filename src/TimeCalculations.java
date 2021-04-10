@@ -24,7 +24,7 @@ public final class TimeCalculations {
         double start;
         for(int i=0;i<indeces.size();i++){
             start = beginning+(indeces.get(i)*letterTime);
-            timestamps.add(start-.1);
+            timestamps.add(start-.4);
             timestamps.add(start+wordTime+.1);
         }
         //System.out.println(timestamps);
