@@ -24,11 +24,11 @@ public final class TimeCalculations {
         double start;
         for(int i=0;i<indeces.size();i++){
             start = beginning+(indeces.get(i)*letterTime);
-            timestamps.add(start-1);
+            timestamps.add(start-2);
             if(speech.substring(indeces.get(i)).contains(" ") == false){
                 timestamps.add(end);
             }else{
-            timestamps.add(start+wordTime+.2);
+            timestamps.add(start+wordTime-.2);
             }
         }
         //System.out.println(timestamps);

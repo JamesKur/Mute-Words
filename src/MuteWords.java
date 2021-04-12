@@ -30,7 +30,7 @@ public class MuteWords {
         String subUnitSpeech = "";
         String subtitleLine;
         ArrayList<Double> timestamps;
-        ArrayList<EDLCommand> edls = new ArrayList<EDLCommand>();
+        ArrayList<EDLCommand> edls = new ArrayList<>();
         Scanner tester = new Scanner(System.in);
 
         while((subtitleLine=subtitleReader.readLine()) != null){
