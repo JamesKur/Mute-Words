@@ -35,6 +35,7 @@ public class MuteWords {
 
         while((subtitleLine=subtitleReader.readLine()) != null){
             if(subtitleLine.length() > 0){
+                subtitleLine = subtitleLine.replaceAll("-", " ");
                 subUnit.add(subtitleLine.toLowerCase());
             }
             else{

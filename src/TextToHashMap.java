@@ -16,7 +16,7 @@ public final class TextToHashMap {
         String rest;
 
         while((line=reader.readLine()) != null){
-            line.replaceAll("-"," ");
+            line = line.replaceAll("-"," ");
             if(line.contains("<") && line.contains(">")){
                 line = line.substring(0, line.indexOf("<")) + " " +
                     line.substring(line.indexOf(">")+1);
