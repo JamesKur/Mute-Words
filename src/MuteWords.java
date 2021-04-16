@@ -47,9 +47,8 @@ public class MuteWords {
                 //tester.nextLine();
                 for(String word : words){
                     if(subUnitSpeech.contains(word)){
-                        //System.out.println(contains(subUnitSpeech.indexOf(word) == 0,subUnitSpeech,word));
+                        //System.out.println(word + subUnitSpeech + "slfjsalfjasljf");
                         if(contains(subUnitSpeech,word)>-1){
-                                //System.out.println("Wooophie");
                                 timestamps = TimeCalculations.subtitleToIntervel(subUnit.get(1), subUnitSpeech, word);
                                 EDLManager.command(edl, timestamps,1,subUnitSpeech,word);
                                 for(int i=0;i<timestamps.size();i+=2){
