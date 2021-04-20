@@ -120,6 +120,9 @@ public class MuteWords {
             else if(subUnitSpeech.contains(word+"ed")){
                 return subUnitSpeech.indexOf(word+"ed");
             }
+            else if(subUnitSpeech.contains(word+"'s")){
+                return subUnitSpeech.indexOf(word+"'s");
+            }
             else
                 return -1;
         }
@@ -133,20 +136,20 @@ public class MuteWords {
             else if(subUnitSpeech.contains(" "+word+",")){
                 return subUnitSpeech.indexOf(" "+word+",");
             }
-            else if(subUnitSpeech.contains(" "+word+"-")){
-                return subUnitSpeech.indexOf(" "+word+"-");
-            }
             else if(subUnitSpeech.contains(" "+word+"?")){
                 return subUnitSpeech.indexOf(" "+word+"?");
             }
             else if(subUnitSpeech.contains(" "+word+"!")){
-                return subUnitSpeech.indexOf(" "+word+"!");
+                return subUnitSpeech.indexOf(" "+word+"!"); 
             }
             else if(subUnitSpeech.contains(" "+word+"er")){
                 return subUnitSpeech.indexOf(" "+word+"er");
             }
             else if(subUnitSpeech.contains(" "+word+"es")){
                 return subUnitSpeech.indexOf(" "+word+"es");
+            }
+            else if(subUnitSpeech.contains(" "+word+"'s")){
+                return subUnitSpeech.indexOf(" "+word+"'s");
             }
             else if(subUnitSpeech.contains(" "+word+"y")){
                 return subUnitSpeech.indexOf(" "+word+"y");
@@ -179,39 +182,6 @@ public class MuteWords {
             }
             else if(subUnitSpeech.contains(">"+word+" ")){
                 return subUnitSpeech.indexOf(">"+word+" ");
-            }
-            else if(subUnitSpeech.contains("-"+word+",")){
-                return subUnitSpeech.indexOf("-"+word+",");
-            }
-            else if(subUnitSpeech.contains("-"+word+"-")){
-                return subUnitSpeech.indexOf("-"+word+"-");
-            }
-            else if(subUnitSpeech.contains("-"+word+"?")){
-                return subUnitSpeech.indexOf("-"+word+"?");
-            }
-            else if(subUnitSpeech.contains("-"+word+"!")){
-                return subUnitSpeech.indexOf("-"+word+"!");
-            }
-            else if(subUnitSpeech.contains("-"+word+"er")){
-                return subUnitSpeech.indexOf("-"+word+"er");
-            }
-            else if(subUnitSpeech.contains("-"+word+"es")){
-                return subUnitSpeech.indexOf("-"+word+"es");
-            }
-            else if(subUnitSpeech.contains("-"+word+"y")){
-                return subUnitSpeech.indexOf("-"+word+"y");
-            }
-            else if(subUnitSpeech.contains("-"+word+"ies")){
-                return subUnitSpeech.indexOf("-"+word+"ies");
-            }
-            else if(subUnitSpeech.contains("-"+word+"s")){
-                return subUnitSpeech.indexOf("-"+word+"s");
-            }
-            else if(subUnitSpeech.contains("-"+word+"ing")){
-                return subUnitSpeech.indexOf("-"+word+"ing");
-            }
-            else if(subUnitSpeech.contains("-"+word+"ed")){
-                return subUnitSpeech.indexOf("-"+word+"ed");
             }
             else if(subUnitSpeech.contains("-"+word+"<")){
                 return subUnitSpeech.indexOf(" "+word+"<");
