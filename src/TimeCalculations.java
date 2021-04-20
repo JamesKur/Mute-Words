@@ -32,7 +32,6 @@ public final class TimeCalculations {
             }
         }
         //System.out.println(timestamps);
-
         //Removes overlap if there are multiple instances of the same word in a subtitle unit
         timestamps = removeOverlap(timestamps);
 
@@ -43,7 +42,7 @@ public final class TimeCalculations {
 
         //Ensures a minimum amount of time is muted. If a subtitle subunit has a shorter time interval than the mimumum
         //interval, then the entire subunit will be muted
-        timestamps = mimimumMuteInterval(timestamps, beginning, end, 1);
+        timestamps = mimimumMuteInterval(timestamps, beginning, end, 1.5);
 
         //double[] timeValues = new double[]{beginning,end};
         //System.out.println(timestamps);
@@ -100,7 +99,6 @@ public final class TimeCalculations {
             if(end-beginning<minimumInterval){
                 timestamps.set(i,beginning);
                 timestamps.set(i+1,end);
-                System.out.println(beginning + "yoyo" + end);
             }
             else if((interval=timestamps.get(i+1)-timestamps.get(i)) < minimumInterval){
                 do{
