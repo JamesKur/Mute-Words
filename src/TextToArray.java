@@ -15,8 +15,14 @@ public final class TextToArray{
         BufferedReader reader = Files.newBufferedReader(path);
         String line;
         while((line=reader.readLine()) != null){
+            line = line.replaceAll("-"," ");
+            if(line.contains("<") && line.contains(">")){
+                line = line.substring(0, line.indexOf("<")) + " " +
+                    line.substring(line.indexOf(">")+1);
+            }
             list.add(line.toLowerCase());
         }
+        
         return list;
     }
 }

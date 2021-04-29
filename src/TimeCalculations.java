@@ -24,11 +24,14 @@ public final class TimeCalculations {
         double start;
         for(int i=0;i<indeces.size();i++){
             start = beginning+(indeces.get(i)*letterTime);
-            timestamps.add(start-.1);
-            timestamps.add(start+wordTime+.1);
+            timestamps.add(start-2);
+            if(speech.substring(indeces.get(i)).contains(" ") == false){
+                timestamps.add(end);
+            }else{
+                    timestamps.add(start+wordTime-.2);
+            }
         }
         //System.out.println(timestamps);
-
         //Removes overlap if there are multiple instances of the same word in a subtitle unit
         timestamps = removeOverlap(timestamps);
 
@@ -36,6 +39,11 @@ public final class TimeCalculations {
         all words should occur within that timeframe. This will get ride of extraneous timestamps or set them as the maximum
         bounds as necessary.*/
         timestamps = removeOutOfBounds(timestamps, beginning, end);
+
+        //Ensures a minimum amount of time is muted. If a subtitle subunit has a shorter time interval than the mimumum
+        //interval, then the entire subunit will be muted
+        timestamps = mimimumMuteInterval(timestamps, beginning, end, 1.5);
+
         //double[] timeValues = new double[]{beginning,end};
         //System.out.println(timestamps);
         return timestamps;
@@ -82,5 +90,27 @@ public final class TimeCalculations {
         return timestamps;
     }
     
+    private static ArrayList<Double> mimimumMuteInterval(ArrayList<Double> timestamps, double beginning,
+        double end, double minimumInterval){
+        double interval;
+        double addingInterval;
+        //System.out.println(timestamps);
+        for(int i=0;i<timestamps.size();i+=2){
+            if(end-beginning<minimumInterval){
+                timestamps.set(i,beginning);
+                timestamps.set(i+1,end);
+            }
+            else if((interval=timestamps.get(i+1)-timestamps.get(i)) < minimumInterval){
+                do{
+                    addingInterval = (minimumInterval-interval)/2+0.01;
+                    //System.out.println(interval);
+                    timestamps.set(i,timestamps.get(i)-addingInterval);
+                    timestamps.set(i+1,timestamps.get(i+1)+addingInterval);
+                    timestamps = removeOutOfBounds(timestamps, beginning, end);
+                }while((interval=timestamps.get(i+1)-timestamps.get(i)) < minimumInterval);
+            }
+        }
+            return timestamps;
+    }
     
 }
