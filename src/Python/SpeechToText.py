@@ -6,7 +6,7 @@ def transcribeAudio(audioTrackPath, start, stop):
     from google.api_core import operation
     from google.cloud import speech_v1
 
-    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'quantum-petal-319304-dbfb7a8d04ad.json'
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'quantum-petal-319304-62ed591c5ea5.json'
     client = speech_v1.SpeechClient()
 
     newPath = ChannelTools.trimAudio(audioTrackPath,start,stop)
