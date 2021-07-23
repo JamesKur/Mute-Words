@@ -10,13 +10,15 @@ import java.io.IOException;
 //This code is still in the works, hence the numerous commented-out code that is used for testing.
 public class MuteWords {
     public static void main(String[] args) throws IOException {
+        String command = "python \"C:\\Users\\james\\Documents\\Visual Studio Code\\Java\\Mute-Words\\src\\Python\\SpeechToText.py\" \"E:\\Cache\\gMKVExtract\\Pineapple Expressfront_center.flac\"";
+        Process p = Runtime.getRuntime().exec(command+ "93.323" + "105");
         Path wordList = Paths.get("Bad_Words.txt");
         ArrayList<String> words = TextToArray.indexArray(wordList);
         Collections.sort(words, Comparator.comparing(String::length));
         Collections.reverse(words);
         //System.out.println(words);
-        //Path subtitle = Paths.get("Avatar.srt");
-        Path subtitle = Paths.get(args[0]);
+        Path subtitle = Paths.get("Pineapple Express.srt");
+        //Path subtitle = Paths.get(args[0]);
         Path edl = Paths.get(subtitle.toString().substring(0,subtitle.toString().lastIndexOf(".")) + ".edl");
         try{
             Files.createFile(edl);
@@ -42,10 +44,9 @@ public class MuteWords {
                 for(int i=subUnit.size();i>2;i--){
                    subUnitSpeech = subUnit.get(i-1) + " " + subUnitSpeech;
                 }
-                //System.out.println(subUnit);
                 //System.out.println(subUnitSpeech);
                 //System.out.println(subUnitSpeech.contains("damn"));
-                //tester.nextLine();
+                tester.nextLine();
                 for(String word : words){
                     if(subUnitSpeech.contains(word)){
                         //System.out.println(word + subUnitSpeech + "slfjsalfjasljf");
