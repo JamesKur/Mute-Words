@@ -7,6 +7,16 @@ public final class TimeCalculations {
         //not called
     }
 
+    public static Double[] getTimes(String times){
+        Double[] timePair = new Double[2];
+
+        timePair[0] = toSeconds(Integer.valueOf(times.substring(0,2)), Integer.valueOf(times.substring(3,5)),
+        Double.valueOf(times.substring(6,8)+"."+times.substring(9,12)));
+        timePair[1] = toSeconds(Integer.valueOf(times.substring(17,19)),Integer.valueOf(times.substring(20,22)),
+        Double.valueOf(times.substring(23,25)+"."+times.substring(26)));
+
+        return timePair;
+    }
     public static ArrayList<Double> subtitleToIntervel(String times, String speech, String word){
         
         ArrayList<Double> timestamps = new ArrayList<Double>();

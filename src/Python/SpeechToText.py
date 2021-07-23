@@ -6,7 +6,7 @@ def transcribeAudio(audioTrackPath, start, stop):
     from google.api_core import operation
     from google.cloud import speech_v1
 
-    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'quantum-petal-319304-62ed591c5ea5.json'
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "C:/Users/james/Documents/Visual Studio Code/Java/Mute-Words/quantum-petal-319304-62ed591c5ea5.json"
     client = speech_v1.SpeechClient()
 
     newPath = ChannelTools.trimAudio(audioTrackPath,start,stop)
@@ -26,7 +26,6 @@ def transcribeAudio(audioTrackPath, start, stop):
     )
 
     response = client.recognize(config=config, audio=audio)
-
     for result in response.results:
             alternative = result.alternatives[0]
             for word_info in alternative.words:
@@ -40,5 +39,6 @@ def transcribeAudio(audioTrackPath, start, stop):
                 print(
                     f"Word: {word}, start_time: {start_time.total_seconds()}, end_time: {end_time.total_seconds()}"
                 )
-
-transcribeAudio("E:\Cache\gMKVExtract\Pineapple Expressfront_center.flac",1056,1078)
+import sys
+#transcribeAudio(sys.argv[0],sys.argv[1], sys.argv[1])
+transcribeAudio("E:\Cache\gMKVExtract\Pineapple Expressfront_center.flac",98, 115)
