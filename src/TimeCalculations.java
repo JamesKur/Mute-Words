@@ -59,6 +59,47 @@ public final class TimeCalculations {
         return timestamps;
     }
 
+    public static ArrayList<Double> cloudAnalysis(String times, String speech, String word, String audioPath){
+        
+        ArrayList<Double> timestamps = new ArrayList<Double>();
+        ArrayList<Integer> indeces = MuteWords.findAllInstances(speech, word);
+
+        Double beginning = toSeconds(Integer.valueOf(times.substring(0,2)), Integer.valueOf(times.substring(3,5)),
+            Double.valueOf(times.substring(6,8)+"."+times.substring(9,12)));
+
+        Double end = toSeconds(Integer.valueOf(times.substring(17,19)),Integer.valueOf(times.substring(20,22)),
+            Double.valueOf(times.substring(23,25)+"."+times.substring(26)));
+        
+        String prg = "import sys";
+        BufferedWriter out = new BufferedWriter(new FileWriter("path/a.py"));
+        out.write(prg);
+        out.close();
+        Process p = Runtime.getRuntime().exec("python path/a.py");
+        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        String ret = in.readLine();
+        System.out.println("value is : "+ret);
+        
+        String command = "python \\src\\Python\\SpeechToText.py\" " + audioPath;
+        Process p = Runtime.getRuntime().exec(command+ Double.toString(beginning) + Double.toString(end));
+
+        //System.out.println(timestamps);
+        //Removes overlap if there are multiple instances of the same word in a subtitle unit
+        timestamps = removeOverlap(timestamps);
+
+        /*We don't want any created timestamps to be outside the original time frame of the subtitle unit because
+        all words should occur within that timeframe. This will get ride of extraneous timestamps or set them as the maximum
+        bounds as necessary.*/
+        timestamps = removeOutOfBounds(timestamps, beginning, end);
+
+        //Ensures a minimum amount of time is muted. If a subtitle subunit has a shorter time interval than the mimumum
+        //interval, then the entire subunit will be muted
+        timestamps = mimimumMuteInterval(timestamps, beginning, end, 1.5);
+
+        //double[] timeValues = new double[]{beginning,end};
+        //System.out.println(timestamps);
+        return timestamps;
+    }
+
     //Converse time to seconds.
     private static double toSeconds(int hours, int minutes, double seconds){
             return hours*3600 + minutes*60 + seconds;

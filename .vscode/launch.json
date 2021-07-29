@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch MuteWords",
+            "request": "launch",
+            "mainClass": "MuteWords",
+            "projectName": "Mute-Words_c31a2a97"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
