@@ -23,6 +23,5 @@ def trimAudio(audioTrackPath,start,stop):
     segment.export(audioTrackPath[:audioTrackPath.rindex(".")]+'trimmed'+".flac", format="flac")
     return audioTrackPath[:audioTrackPath.rindex(".")]+'trimmed'+".flac"
 
-
 #ffmpeg -i "Deepwater Horizon (2016)_track2_[eng]_DELAY 0ms.thd" 
 # -filter_complex "channelsplit=channel_layout=7.1:channels=FC[FC]" -map "[FC]" front_center.flac

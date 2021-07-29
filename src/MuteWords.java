@@ -5,13 +5,51 @@ import java.util.Collections;
 import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 //Subititle subunite: a single block of text that appears on screen during a movie.
 //This code is still in the works, hence the numerous commented-out code that is used for testing.
 public class MuteWords {
     public static void main(String[] args) throws IOException {
-        String command = "python \"C:\\Users\\james\\Documents\\Visual Studio Code\\Java\\Mute-Words\\src\\Python\\SpeechToText.py\" \"E:\\Cache\\gMKVExtract\\Pineapple Expressfront_center.flac\"";
-        Process p = Runtime.getRuntime().exec(command+ "93.323" + "105");
+        String command = "python \"\\src\\Python\\SpeechToText.py\" \"E:\\Cache\\gMKVExtract\\Pineapple Expressfront_center.flac\"";
+        
+        try {
+            String s = null;
+        // run the Unix "ps -ef" command
+            // using the Runtime exec method:
+            Process p = Runtime.getRuntime().exec(command+ "93.323" + "105");
+            
+            BufferedReader stdInput = new BufferedReader(new 
+                    InputStreamReader(p.getInputStream()));
+
+            BufferedReader stdError = new BufferedReader(new 
+                    InputStreamReader(p.getErrorStream()));
+
+            // read the output from the command
+            System.out.println("Here is the standard output of the command:\n");
+            while ((s = stdInput.readLine()) != null) {
+                System.out.println(s);
+            }
+            
+            // read any errors from the attempted command
+            System.out.println("Here is the standard error of the command (if any):\n");
+            while ((s = stdError.readLine()) != null) {
+                System.out.println(s);
+            }
+            
+            System.exit(0);
+        }
+        catch (IOException e) {
+            System.out.println("exception happened - here's what I know: ");
+            e.printStackTrace();
+            System.exit(-1);
+        }
+        
+        
+        
+        
+        
+        
         Path wordList = Paths.get("Bad_Words.txt");
         ArrayList<String> words = TextToArray.indexArray(wordList);
         Collections.sort(words, Comparator.comparing(String::length));
